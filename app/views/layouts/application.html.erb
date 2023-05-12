@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AplikasiSpk</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+
+    <%# file css %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "core", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "theme-default", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "demo", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "boxicons", "data-turbo-track": "reload" %>
+    
+
+   
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+<%= javascript_include_tag "jquery.js" %>
+<%= javascript_include_tag "popper.js" %>
+<%= javascript_include_tag "bootstrap.js" %>
+<%= javascript_include_tag "menu.js" %>
+<%= javascript_include_tag "main.js" %>
+
+</html>
