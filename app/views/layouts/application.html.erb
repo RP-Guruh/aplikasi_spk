@@ -2,20 +2,14 @@
 <html>
   <head>
     <title>AplikasiSpk</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <%= csrf_meta_tags %> <%= csp_meta_tag %> <%# file css %> <%=
+    stylesheet_link_tag "application", "data-turbo-track": "reload" %> <%=
+    stylesheet_link_tag "core", "data-turbo-track": "reload" %> <%=
+    stylesheet_link_tag "theme-default", "data-turbo-track": "reload" %> <%=
+    stylesheet_link_tag "demo", "data-turbo-track": "reload" %> <%=
+    stylesheet_link_tag "boxicons", "data-turbo-track": "reload" %>
 
-
-    <%# file css %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "core", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "theme-default", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "demo", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "boxicons", "data-turbo-track": "reload" %>
-    
-
-   
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -25,15 +19,20 @@
     />
 
     <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "helpers.js" %> 
+    <%= javascript_include_tag "config.js" %> 
   </head>
 
   <body>
-    <%= yield %>
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+        <%= render 'partials/sidebar' %> <%= yield %>
+      </div>
+    </div>
   </body>
-<%= javascript_include_tag "jquery.js" %>
-<%= javascript_include_tag "popper.js" %>
-<%= javascript_include_tag "bootstrap.js" %>
-<%= javascript_include_tag "menu.js" %>
-<%= javascript_include_tag "main.js" %>
-
+  <%= javascript_include_tag "jquery.js" %> 
+  <%= javascript_include_tag "popper.js" %> 
+  <%= javascript_include_tag "bootstrap.js" %> 
+  <%= javascript_include_tag "menu.js" %> 
+  <%= javascript_include_tag "main.js" %>
 </html>

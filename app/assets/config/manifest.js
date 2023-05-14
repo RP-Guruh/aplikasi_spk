@@ -2,10 +2,3 @@
 //= link_directory ../stylesheets .css
 //= link_tree ../../javascript .js
 //= link_tree ../../../vendor/javascript .js
-//= link bootstrap.js
-//= link helpers.js
-//= link menu.js
-//= link jquery.js
-//= link popper.js
-//= link main.js
-//= link menu.js

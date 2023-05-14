@@ -15,6 +15,9 @@ gem "sprockets-rails"
 # use postgresql
 gem 'pg', '~> 1.5', '>= 1.5.3'
 
+# use byebgu (debugging code)
+
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
@@ -73,3 +76,5 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "byebug", "~> 11.1", :groups => [:development, :test]
