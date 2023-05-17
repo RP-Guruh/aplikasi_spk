@@ -26,3 +26,5 @@ puts "db seed running"
     employment_status: Faker::Job.employment_type
   )
 end
+
+puts "db seed finish"

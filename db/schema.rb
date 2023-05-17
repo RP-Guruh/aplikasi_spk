@@ -10,9 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_16_090414) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_17_091951) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "criteria_values", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "employee_values", force: :cascade do |t|
+    t.string "NormalizedValue"
+    t.string "NormalizationValue"
+    t.string "TotalValue"
+    t.string "PreferenceValue"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "employees", force: :cascade do |t|
     t.string "first_name"
@@ -31,24 +45,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_16_090414) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "karyawan_tables", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.date "date_of_birth"
-    t.string "gender"
-    t.string "address"
-    t.string "phone_number"
-    t.string "email"
-    t.string "position"
-    t.string "department"
-    t.decimal "salary"
-    t.date "start_date"
-    t.string "employment_status"
+  create_table "normalization_weights", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "karyawans", force: :cascade do |t|
+  create_table "normalized_values", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "preference_values", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "total_values", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

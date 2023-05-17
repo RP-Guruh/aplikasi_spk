@@ -3,13 +3,14 @@
   <head>
     <title>AplikasiSpk</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <%= csrf_meta_tags %> <%= csp_meta_tag %> <%# file css %> <%=
-    stylesheet_link_tag "application", "data-turbo-track": "reload" %> <%=
-    stylesheet_link_tag "core", "data-turbo-track": "reload" %> <%=
-    stylesheet_link_tag "theme-default", "data-turbo-track": "reload" %> <%=
-    stylesheet_link_tag "demo", "data-turbo-track": "reload" %> <%=
-    stylesheet_link_tag "boxicons", "data-turbo-track": "reload" %>
-
+    <%= csrf_meta_tags %> 
+    <%= csp_meta_tag %> <%# file css %> 
+    <%= stylesheet_link_tag "application", 'data-turbolinks-track': 'reload' %> 
+    <%= stylesheet_link_tag "core", 'data-turbolinks-track': 'reload' %> 
+    <%= stylesheet_link_tag "theme-default", 'data-turbolinks-track': 'reload' %> 
+    <%= stylesheet_link_tag "demo", 'data-turbolinks-track': 'reload'%> 
+    <%= stylesheet_link_tag "boxicons", 'data-turbolinks-track': 'reload'%>
+    <%= stylesheet_link_tag "perfect-scrollbar", 'data-turbolinks-track': 'reload'%>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -35,4 +36,5 @@
   <%= javascript_include_tag "bootstrap.js" %> 
   <%= javascript_include_tag "menu.js" %> 
   <%= javascript_include_tag "main.js" %>
+  <%= javascript_include_tag "perfect-scrollbar.js" %>
 </html>
