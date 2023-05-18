@@ -1,0 +1,192 @@
+<div class="layout-page">
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-md-6 mx-auto" style="margin-top: 50px">
+        <div class="card mb-4">
+          <h5 class="card-header">Employee Edit Form</h5>
+          <div class="card-body">
+            <%= form_with model: @karyawan, url: update_employee_path(@karyawan), method: :patch do |form| %>
+           
+            <div class="row g-2">
+              <div class="col mb-0">
+                <label for="emailWithTitle" class="form-label"
+                  >First Name</label
+                >
+                <input
+                  required
+                  name="first_name"
+                  type="text"
+                  id="emailWithTitle"
+                  class="form-control"
+                  placeholder="First Name"
+                  value="<%= @karyawan.first_name %>"
+                />
+              </div>
+              <div class="col mb-0">
+                <label for="dobWithTitle" class="form-label">Last Name</label>
+                <input
+                  required
+                  name="last_name"
+                  type="text"
+                  id="dobWithTitle"
+                  class="form-control"
+                  placeholder="Last Name"
+                  value="<%= @karyawan.last_name %>"
+                />
+              </div>
+            </div>
+
+            <div class="row g-2 mt-2">
+              <div class="col mb-0">
+                <label for="nameWithTitle" class="form-label"
+                  >Date Of Birth</label
+                >
+                <input
+                  required
+                  name="dob"
+                  type="text"
+                  id="nameWithTitle"
+                  class="form-control"
+                  placeholder="DD / MM / YY"
+                  value="<%= @karyawan.date_of_birth %>"
+                />
+              </div>
+              <div class="col mb-0">
+                <label for="exampleFormControlSelect1" class="form-label"
+                  >Gender</label
+                >
+                <select
+                  required
+                  name="gender"
+                  class="form-select"
+                  id="exampleFormControlSelect1"
+                  aria-label="Default select example"
+                >
+                  <option selected>Choose Gender</option>
+                  <option value="Male" <%= 'selected' if @karyawan.gender == 'Male' %>>Male</option>
+                  <option value="Female" <%= 'selected' if @karyawan.gender == 'Female' %>>Female</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row mt-2 g-2">
+              <div class="col mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label"
+                  >Address</label
+                >
+                <textarea
+                  required
+                  name="address"
+                  class="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                ><%= @karyawan.address %></textarea>
+              </div>
+            </div>
+
+            <div class="row g-2">
+              <div class="col mb-0">
+                <label for="nameWithTitle" class="form-label"
+                  >Phone Number</label
+                >
+                <input
+                  required
+                  name="phone_num"
+                  type="text"
+                  id="nameWithTitle"
+                  class="form-control"
+                  placeholder="0819080xxxx"
+                  value="<%= @karyawan.phone_number %>"
+                />
+              </div>
+              <div class="col mb-0">
+                <label for="nameWithTitle" class="form-label">Email</label>
+                <input
+                  required
+                  name="email"
+                  type="email"
+                  id="nameWithTitle"
+                  class="form-control"
+                  placeholder="user@gmail.com"
+                  value="<%= @karyawan.email %>"
+                />
+              </div>
+            </div>
+
+            <div class="row g-2 mt-2">
+              <div class="col mb-0">
+                <label for="nameWithTitle" class="form-label">Position</label>
+                <select
+                  required
+                  name="position"
+                  class="form-select"
+                  id="exampleFormControlSelect1"
+                  aria-label="Default select example"
+                >
+                  <option selected>Choose Position</option>
+                  <option value="Ketua_Pengawas" <%= 'selected' if @karyawan.position == 'Ketua_Pengawas' %>>Ketua Pengawas</option>
+                  <option value="Ketua_Koperasi" <%= 'selected' if @karyawan.position == 'Ketua_Koperasi' %>>Ketua Koperasi</option>
+                  <option value="Sekretaris" <%= 'selected' if @karyawan.position == 'Sekretaris' %>>Sekretaris</option>
+                  <option value="Bendahara" <%= 'selected' if @karyawan.position == 'Bendahara' %>>Bendahara</option>
+                  <option value="Pengawas_I" <%= 'selected' if @karyawan.position == 'Pengawas_I' %>>Pengawas I</option>
+                  <option value="Pengawas_II" <%= 'selected' if @karyawan.position == 'Pengawas_II' %>>Pengawas II</option>
+                  <option value="Anggota" <%= 'selected' if @karyawan.position == 'Anggota' %>>Anggota</option>
+                
+                </select>
+              </div>
+              <div class="col mb-0">
+                <label for="exampleFormControlSelect1" class="form-label"
+                  >Departement</label
+                >
+                <select
+                  required
+                  name="department"
+                  class="form-select"
+                  id="exampleFormControlSelect1"
+                  aria-label="Default select example"
+                >
+                  <option selected>Choose Departement</option>
+                  <option value="Manajemen" <%= 'selected' if @karyawan.department == 'Manajemen' %>>Manajemen</option>
+                  <option value="Pemasaran" <%= 'selected' if @karyawan.department == 'Pemasaran' %>>Pemasaran</option>
+                  <option value="Keuangan" <%= 'selected' if @karyawan.department == 'Keuangan' %>>Keuangan</option>
+                  <option value="Sumber Daya Manusia" <%= 'selected' if @karyawan.department == 'Sumber Daya Manusia' %>>Sumber Daya Manusia</option>
+                  <option value="Operasional" <%= 'selected' if @karyawan.department == 'Operasional' %>>Operasional</option>
+                  <option value="Layanan Anggota" <%= 'selected' if @karyawan.department == 'Layanan Anggota' %>>Layanan Anggota</option>
+                  <option value="Teknologi Informasi" <%= 'selected' if @karyawan.department == 'Teknologi Informasi' %>>Teknologi Informasi</option>
+                  <option value="Pertanian" <%= 'selected' if @karyawan.department == 'Pertanian' %>>Pertanian</option>
+                  <option value="Proyek" <%= 'selected' if @karyawan.department == 'Proyek' %>>Proyek</option>
+                  <option value="Ritel" <%= 'selected' if @karyawan.department == 'Ritel' %>>Ritel</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row mt-2 g-2">
+              <div class="col mb-3">
+                <label for="exampleFormControlSelect1" class="form-label"
+                  >Status</label
+                >
+                <select
+                  required
+                  name="status"
+                  class="form-select"
+                  id="exampleFormControlSelect1"
+                  aria-label="Default select example"
+                >
+                  <option selected>Choose Status</option>
+                  <option value="Temporary" <%= 'selected' if @karyawan.employment_status == 'Temporary' %>>Temporary</option>
+                  <option value="Internship" <%= 'selected' if @karyawan.employment_status == 'Internship' %>>Internship</option>
+                  <option value="Full_Time" <%= 'selected' if @karyawan.employment_status == 'Full_Time' %>>Full Time</option>
+                  <option value="Comission" <%= 'selected' if @karyawan.employment_status == 'Comission' %>>Comission</option>
+                  <option value="Contract" <%= 'selected' if @karyawan.employment_status == 'Contract' %>>Contract</option>
+                </select>
+              </div>
+            </div>
+            <%= form.submit "Update Data", class: "btn btn-primary" %>
+           
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
