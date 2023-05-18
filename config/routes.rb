@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   root to: 'dashboards#index'
 
   get '/employee', to: 'employees#index'
+  post '/employee', to: 'employees#create'
+  delete '/employee', to: 'employees#destroy'
 end
