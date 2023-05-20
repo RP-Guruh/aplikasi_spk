@@ -10,11 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_17_091951) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_20_061412) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "criteria_values", force: :cascade do |t|
+    t.string "kriteria"
+    t.string "keterangan"
+    t.decimal "bobot_nilai"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -38,8 +41,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_17_091951) do
     t.string "email"
     t.string "position"
     t.string "department"
-    t.decimal "salary"
-    t.date "start_date"
     t.string "employment_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -58,6 +59,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_17_091951) do
   create_table "preference_values", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "kriteria", null: false
+    t.string "keterangan", null: false
+    t.decimal "bobot_nilai"
   end
 
   create_table "total_values", force: :cascade do |t|

@@ -1,0 +1,47 @@
+<div class="layout-page">
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-md-6 mx-auto" style="margin-top: 50px">
+        <div class="card mb-4">
+          <h5 class="card-header">Criteria Edit Form</h5>
+          <div class="card-body">
+            <%= form_with model: @criteria, url: update_criteria_path(@criteria), method: :patch do |form| %>
+           
+            <div class="row g-2">
+              <div class="col mb-0">
+                <label for="emailWithTitle" class="form-label"
+                  >Keterangan</label
+                >
+                <input
+                  required
+                  name="keterangan"
+                  type="text"
+                  id="emailWithTitle"
+                  class="form-control"
+                  placeholder="First Name"
+                  value="<%= @criteria.keterangan %>"
+                />
+              </div>
+              <div class="col mb-0">
+                <label for="dobWithTitle" class="form-label">Bobot Nilai</label>
+                <input
+                  required
+                  name="bobot_nilai"
+                  type="text"
+                  id="dobWithTitle"
+                  class="form-control"
+                  placeholder="Last Name"
+                  value="<%= @criteria.bobot_nilai %>"
+                />
+              </div>
+            </div>
+
+            <%= form.submit "Update Data", class: "btn btn-primary", style: "margin-top:20px;" %>
+           
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

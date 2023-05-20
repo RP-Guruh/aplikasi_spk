@@ -12,4 +12,10 @@ Rails.application.routes.draw do
   delete '/employee', to: 'employees#destroy'
   get '/employee/:id/edit', to: 'employees#edit'
   patch '/employees/:id', to: 'employees#update', as: 'update_employee'
+
+  get '/criteria', to: 'criteria#index'
+  post '/criteria', to: 'criteria#create'
+  delete '/criteria', to: 'criteria#destroy'
+  get '/criteria/:id/edit', to: 'criteria#edit'
+  patch '/criteria/:id', to: 'criteria#update', as: 'update_criteria'
 end

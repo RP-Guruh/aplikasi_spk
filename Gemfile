@@ -79,3 +79,4 @@ end
 gem "byebug", "~> 11.1", :groups => [:development, :test]
 
 gem 'erb-formatter', '~> 0.4.3', :groups => [:development, :test]
+gem 'ransack'

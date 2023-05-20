@@ -46,18 +46,7 @@ class EmployeesController < ApplicationController
   end
 
   def update
-    employee = Employee.find(params[:id])
-    employee.first_name = params[:first_name]
-    employee.last_name = params[:last_name]
-    employee.date_of_birth = params[:dob]
-    employee.gender = params[:gender]
-    employee.address = params[:address]
-    employee.position = params[:position]
-    employee.department = params[:department]
-    employee.phone_number = params[:phone_num]
-    employee.email = params[:email]
-    employee.employment_status = params[:status]
-    
+    employee = Employee.find(params[:id])    
     update_attributes = {
         first_name: params[:first_name],
         last_name: params[:last_name],
