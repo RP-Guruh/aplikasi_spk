@@ -3,10 +3,24 @@
     <div class="row">
       <div class="col-md-6 mx-auto" style="margin-top: 50px">
         <div class="card mb-4">
-          <h5 class="card-header">Criteria Edit Form</h5>
+          <h5 class="card-header">Value Edit Form</h5>
           <div class="card-body">
-            <%= form_with model: @criteria, url: update_criteria_path(@criteria), method: :patch do |form| %>
-            
+            <%= form_with model: @value, url: update_preference_path(@value), method: :patch do |form| %>
+                   <div class="row g-2">
+              <div class="col mb-0">
+                <label for="emailWithTitle" class="form-label"
+                  >Kriteria</label
+                >
+                <input
+                  required
+                  name="kriteria"
+                  type="text"
+                  id="emailWithTitle"
+                  class="form-control"
+                  placeholder="First Name"
+                  value="<%= @value.kriteria %>"
+                />
+              </div>
             <div class="row g-2">
               <div class="col mb-0">
                 <label for="emailWithTitle" class="form-label"
@@ -19,7 +33,7 @@
                   id="emailWithTitle"
                   class="form-control"
                   placeholder="First Name"
-                  value="<%= @criteria.keterangan %>"
+                  value="<%= @value.keterangan %>"
                 />
               </div>
               <div class="col mb-0">
@@ -31,7 +45,7 @@
                   id="dobWithTitle"
                   class="form-control"
                   placeholder="Last Name"
-                  value="<%= @criteria.bobot_nilai %>"
+                  value="<%= @value.bobot_nilai %>"
                 />
               </div>
             </div>
