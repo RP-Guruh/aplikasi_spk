@@ -28,4 +28,8 @@ Rails.application.routes.draw do
   get '/preference/:id/edit', to: 'preference_value#edit'
   patch '/preference/:id', to: 'preference_value#update', as: 'update_preference'
 
+  #create ranking
+  get '/ranking', to: 'generate_ranking#index'
+  post '/ranking', to: 'generate_ranking#create'
+  get '/generate_rank/:id', to: 'generate_ranking#generate_rank'
 end

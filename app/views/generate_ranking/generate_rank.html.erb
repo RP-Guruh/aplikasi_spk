@@ -1,0 +1,51 @@
+<div class="layout-page">
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-md-6 mx-auto" style="margin-top: 50px">
+        <div class="card mb-4">
+          <h5 class="card-header">Input nilai berdasarkan kriteria 1-100</h5>
+          <div class="card-body">
+            <%= form_with url: '/ranking', method: :post do |form| %>
+            <% @list_kriteria.each_with_index do |krt, index| %>
+
+            <div class="row g-2" style="margin-top: 10px;">
+              <div class="col mb-0">
+                <label for="emailWithTitle" class="form-label"
+                  >Kriteria ke <%= index+1 %></label
+                >
+                <input type="text" name="id_emp[]" value="<%=@id_karyawan%>" id="" hidden>
+                <input type="text" name="id_kriteria[]" value="<%=krt.id%>" id="" hidden>
+                <input
+                  required
+                  type="text"
+                  id="emailWithTitle"
+                  class="form-control"
+                  placeholder="First Name"
+                  value="<%= krt.keterangan %>"
+                  readonly
+                />
+              </div>
+              <div class="col mb-0">
+                <label for="dobWithTitle" class="form-label">Bobot Nilai</label>
+                <input
+                  required
+                  name="bobot_nilai[]"
+                  type="text"
+                  id="dobWithTitle"
+                  class="form-control"
+                  placeholder="Nilai"
+                  
+                />
+              </div>
+            </div>
+            <% end %>
+
+            <%= form.submit "Input Data", class: "btn btn-primary", style: "margin-top:20px;" %>
+           
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
