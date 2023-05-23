@@ -4,13 +4,13 @@ class GenerateRankingController < ApplicationController
     end
 
     def generate_rank
-        @criteria = CriteriaValue.find(params[:id])
+        
         @list_kriteria = CriteriaValue.all
         @id_karyawan = params[:id]
     end
 
     def create
-        puts "Request Parameters: #{params.id_emp}"
+        puts "Request Parameters: #{params.to_json}"
     end
 
 
