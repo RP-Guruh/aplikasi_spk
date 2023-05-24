@@ -32,4 +32,5 @@ Rails.application.routes.draw do
   get '/ranking', to: 'generate_ranking#index'
   post '/ranking', to: 'generate_ranking#create'
   get '/generate_rank/:id', to: 'generate_ranking#generate_rank'
+  get '/ranking_data', to: 'generate_ranking#rank_all_data'
 end
