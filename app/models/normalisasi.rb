@@ -1,0 +1,2 @@
+class Normalisasi < ApplicationRecord
+end
