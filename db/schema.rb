@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_27_063034) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_27_114404) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -72,12 +72,48 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_27_063034) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "log_data_sources", force: :cascade do |t|
+    t.integer "id_employee"
+    t.integer "id_kriteria"
+    t.integer "nilai"
+    t.string "status", default: "request"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "log_hasils", force: :cascade do |t|
+    t.integer "id_employee"
+    t.float "nilai_akhir"
+    t.string "status", default: "completed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "log_normalisasi_bobots", force: :cascade do |t|
+    t.integer "id_employee"
+    t.integer "id_kriteria"
+    t.float "nilai_bobot"
+    t.string "status", default: "request"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "log_normalisasis", force: :cascade do |t|
+    t.integer "id_employee"
+    t.integer "id_kriteria"
+    t.float "nilai_normalisasi"
+    t.string "status", default: "request"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "normalisasis", force: :cascade do |t|
     t.integer "id_employee"
     t.integer "id_kriteria"
     t.float "nilai_normalisasi"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status"
   end
 
   create_table "normalization_weights", force: :cascade do |t|

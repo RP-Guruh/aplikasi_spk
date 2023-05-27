@@ -34,4 +34,8 @@ Rails.application.routes.draw do
   get '/generate_rank/:id', to: 'generate_ranking#generate_rank'
   get '/ranking_data', to: 'generate_ranking#rank_all_data'
   get '/ranking/normalisasi', to: 'generate_ranking#normalisasi'
+  get '/ranking/data/normalisasi', to: 'generate_ranking#normalisasiData'
+  get '/ranking/data/bobot', to: 'generate_ranking#normalisasiBobot'
+  get '/ranking/data/akhir', to: 'generate_ranking#hasilAkhir'
+  
 end

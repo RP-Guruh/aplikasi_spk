@@ -1,0 +1,2 @@
+class LogNormalisasi < ApplicationRecord
+end

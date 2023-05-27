@@ -1,0 +1,2 @@
+class LogDataSource < ApplicationRecord
+end

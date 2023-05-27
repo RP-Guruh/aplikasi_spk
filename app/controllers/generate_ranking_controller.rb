@@ -15,6 +15,18 @@ class GenerateRankingController < ApplicationController
     end
 
     def create
+      if DataSource.any?
+        masterDataSource = DataSource.where(status: 'completed')
+        masterDataSource.each do |data|
+          new_data = LogDataSource.new
+          new_data.id_employee = data.id_employee
+          new_data.id_kriteria = data.id_kriteria
+          new_data.nilai = data.nilai
+          new_data.status = data.status
+          new_data.save
+        end
+        masterDataSource.delete_all
+      end
         jum_data = params[:id_emp].count
         jum_data.times do |index|
             datasrc = DataSource.new
@@ -54,12 +66,25 @@ class GenerateRankingController < ApplicationController
             end
             normalized_scores[kriteria] = bobot_nilai
         end
-       
+        
+        if Normalisasi.any?
+          masterDataNormalisasi = Normalisasi.all
+          masterDataNormalisasi.each do |data|
+            new_data = LogNormalisasi.new
+            new_data.id_employee = data.id_employee
+            new_data.id_kriteria = data.id_kriteria
+            new_data.nilai_normalisasi = data.nilai_normalisasi
+            new_data.status = data.status
+            new_data.save
+          end
+          masterDataNormalisasi.delete_all
+        end
         normalized_scores.each do |kriteria, bobot_nilai|
             bobot_nilai.each do |bobot|
               id_kriteria = kriteria
               id_karyawan = bobot[:id_employee]
               nilai = bobot[:nilai]
+
               normalisasi_nilai = Normalisasi.new(status: "request", id_kriteria: id_kriteria, id_employee: id_karyawan, nilai_normalisasi: nilai)
               normalisasi_nilai.save
             end
@@ -79,6 +104,18 @@ class GenerateRankingController < ApplicationController
         end
 
         # ============================= Perhitunga bobot nilai dari normalisasi ===============
+        if HitungNormalisasiBobot.any?
+          masterDataNormalisasiBobot = HitungNormalisasiBobot.all
+          masterDataNormalisasiBobot.each do |data|
+            new_data = LogNormalisasiBobot.new
+            new_data.id_employee = data.id_employee
+            new_data.id_kriteria = data.id_kriteria
+            new_data.nilai_bobot = data.nilai_bobot
+            new_data.status = data.status
+            new_data.save
+          end
+          masterDataNormalisasiBobot.delete_all
+        end
 
         hasil_normalisasi = Normalisasi.all
         bobot = bobot_kriteria
@@ -98,6 +135,17 @@ class GenerateRankingController < ApplicationController
         # ============================ END PERHITUNGAN BOBOT NORMALISASI ===================
 
         # ============================ Menjumlahkan nilai bobot dan menemukan urutan ranking nya 
+        if HasilAkhir.any?
+            masterDataAkhir = HasilAkhir.all
+            masterDataAkhir.each do |data|
+              new_data = LogHasil.new
+              new_data.id_employee = data.id_employee
+              new_data.nilai_akhir = data.nilai_akhir
+              new_data.status = data.status
+              new_data.save
+            end
+            masterDataAkhir.delete_all
+         end
 
         hasil = HitungNormalisasiBobot.group(:id_employee).sum(:nilai_bobot)
 
@@ -114,11 +162,24 @@ class GenerateRankingController < ApplicationController
           DataSource.update_all(status: "completed")
         end
 
+        redirect_to '/ranking/data/akhir'
+
 
         # ============================ END ========================================================
+    end
+
+    def normalisasiData
+      @data = Normalisasi.order(:id_employee)
     
     end
 
+    def normalisasiBobot
+      @data = HitungNormalisasiBobot.order(:id_employee)
+    end
+
+    def hasilAkhir
+      @data = HasilAkhir.all
+    end
 
     private
 

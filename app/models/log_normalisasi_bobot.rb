@@ -1,0 +1,2 @@
+class LogNormalisasiBobot < ApplicationRecord
+end

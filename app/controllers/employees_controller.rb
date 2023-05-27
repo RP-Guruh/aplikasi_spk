@@ -2,6 +2,10 @@ class EmployeesController < ApplicationController
   def index
     # ambil semua data karyawan, dan tampilkan di views index
     @karyawan = Employee.all
+    # respond_to do |format|
+    #   format.html
+    #   format.json { render json: EmployeeDatatable.new(params) }
+    # end
   end
 
   def create

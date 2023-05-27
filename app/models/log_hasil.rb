@@ -1,0 +1,2 @@
+class LogHasil < ApplicationRecord
+end
