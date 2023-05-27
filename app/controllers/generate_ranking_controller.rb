@@ -1,4 +1,6 @@
 class GenerateRankingController < ApplicationController
+    include ApplicationHelper
+  
     def index
         @karyawan = Employee.all
     end
@@ -29,10 +31,11 @@ class GenerateRankingController < ApplicationController
     def normalisasi
         data = DataSource.all
         
-        # Inisialisasi variabel untuk menyimpan hasil normalisasi bobot_nilai
+        # ========================= Perhitungan Normalisasi ==========================
+
         normalized_scores = Hash.new { |h, k| h[k] = [] }
 
-        # Lakukan normalisasi bobot_nilai untuk setiap kriteria
+       
         data.each do |row|
         kriteria = row.id_kriteria
         bobot_nilai = {
@@ -42,7 +45,7 @@ class GenerateRankingController < ApplicationController
           normalized_scores[kriteria] << bobot_nilai
         end
       
-        # Lakukan normalisasi Min-Max pada setiap kriteria
+        
         normalized_scores.each do |kriteria, bobot_nilai|
             nilais = bobot_nilai.map { |bobot| bobot[:nilai] }
             normalized_nilais = normalize_min_max(nilais)
@@ -51,32 +54,71 @@ class GenerateRankingController < ApplicationController
             end
             normalized_scores[kriteria] = bobot_nilai
         end
-        # Simpan data normalisasi
-        # normalized_scores.each do |kriteria, bobot_nilai|
-        #     bobot_nilai.each do |bobot|
-        #       id_kriteria = kriteria
-        #       id_karyawan = bobot[:id_employee]
-        #       nilai = bobot[:nilai]
-        #       normalisasi_nilai = Normalisasi.new(id_kriteria: id_kriteria, id_employee: id_karyawan, nilai_normalisasi: nilai)
-        #       normalisasi_nilai.save
-        #     end
-        # end
+       
+        normalized_scores.each do |kriteria, bobot_nilai|
+            bobot_nilai.each do |bobot|
+              id_kriteria = kriteria
+              id_karyawan = bobot[:id_employee]
+              nilai = bobot[:nilai]
+              normalisasi_nilai = Normalisasi.new(status: "request", id_kriteria: id_kriteria, id_employee: id_karyawan, nilai_normalisasi: nilai)
+              normalisasi_nilai.save
+            end
+        end
+
+        # ================================ END NORMALISASI =================================
           
         scores = Hash.new(0)
-        
+       
         normalized_scores.each do |kriteria, bobot_nilai|
         bobot = bobot_kriteria[kriteria] # Ganti dengan bobot kriteria yang telah ditentukan
+      
         bobot_nilai.each_with_index do |data, index|
-            puts index
-            nilai = Normalisasi.find(data[:index]).nilai_normalisasi.to_f
-            scores[index] += nilai * bobot
+            nilai = Normalisasi.where(id_employee: data[:id_employee], id_kriteria: kriteria, status: "request").first
+            scores[index] += nilai.nilai_normalisasi.to_f * bobot
         end
         end
 
+        # ============================= Perhitunga bobot nilai dari normalisasi ===============
+
+        hasil_normalisasi = Normalisasi.all
+        bobot = bobot_kriteria
+        weighted_scores = {}
+        hasil_normalisasi.each do |row|
+          id_employee = row['id_employee']
+          id_kriteria = row['id_kriteria']
+          nilai = row['nilai_normalisasi']
+      
+          bobot_nilai = bobot[id_kriteria]
+          weighted_scores[id_employee] ||= 0
+          weighted_scores[id_employee] += nilai * bobot_nilai
+          hitungNormalisasi = HitungNormalisasiBobot.new(id_kriteria: id_kriteria, id_employee: id_employee, nilai_bobot: weighted_scores[id_employee])
+          hitungNormalisasi.save
+        end
+
+        # ============================ END PERHITUNGAN BOBOT NORMALISASI ===================
+
+        # ============================ Menjumlahkan nilai bobot dan menemukan urutan ranking nya 
+
+        hasil = HitungNormalisasiBobot.group(:id_employee).sum(:nilai_bobot)
+
+        sorted_results = hasil.sort_by { |_id_employee, total_nilai| -total_nilai }
+
+        # Menampilkan hasil penjumlahan nilai dengan keterangan ranking
+        sorted_results.each_with_index do |(id_employee, total_nilai), index|
+          ranking = index + 1
+          rounded_nilai = total_nilai.round(2)
+          hasil_akhir = HasilAkhir.new(id_employee: id_employee, nilai_akhir: rounded_nilai)
+          hasil_akhir.save
+          HitungNormalisasiBobot.update_all(status: "completed")
+          Normalisasi.update_all(status: "completed")
+          DataSource.update_all(status: "completed")
+        end
+
+
+        # ============================ END ========================================================
     
-        puts scores
-
     end
+
 
     private
 
@@ -93,15 +135,16 @@ class GenerateRankingController < ApplicationController
   
     # Metode untuk mendefinisikan bobot kriteria
     def bobot_kriteria
-      {
-        9 => 20,
-        10 => 13,
-        11 => 12,
-        12 => 11,
-        13 => 14,
-        14 => 15,
-        15 => 15
-      }
+
+      bobot_nilai = CriteriaValue.all
+      hasil_looping = {}
+
+      bobot_nilai.each do |nilai|
+        id_kriteria = nilai.id
+        bobot = nilai.bobot_nilai
+        hasil_looping[id_kriteria] = bobot
+      end
+      hasil_looping
     end
 
 end

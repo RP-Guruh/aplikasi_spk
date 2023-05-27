@@ -1,0 +1,2 @@
+class HitungNormalisasiBobot < ApplicationRecord
+end

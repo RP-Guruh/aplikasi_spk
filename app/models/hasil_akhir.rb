@@ -1,0 +1,2 @@
+class HasilAkhir < ApplicationRecord
+end
