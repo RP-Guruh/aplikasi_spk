@@ -131,10 +131,10 @@
               <div class="col-sm-7">
                 <div class="card-body">
                   <h5 class="card-title text-primary">
-                    Congratulations John! 🎉
+                    Congratulations <%= employeeName(@karyawan_terbaik.id_employee) %>! 🎉
                   </h5>
                   <p class="mb-4">
-                   Berhasil menjadi karyawan terbaik pada
+                   Berhasil menjadi karyawan terbaik saat ini
                   </p>
 
                 </div>
@@ -172,8 +172,8 @@
       </div>
       <div class="row">
         <!-- Order Statistics -->
-        <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
-        
+        <div class="col-md-12 col-lg-8 col-xl-8 order-0 mb-4">
+          <canvas id="myChart" width="900" height="500"></canvas>
         </div>
         <!--/ Order Statistics -->
 

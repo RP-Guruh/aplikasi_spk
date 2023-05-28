@@ -142,6 +142,7 @@ class GenerateRankingController < ApplicationController
               new_data.id_employee = data.id_employee
               new_data.nilai_akhir = data.nilai_akhir
               new_data.status = data.status
+              new_data.ranking = data.ranking
               new_data.save
             end
             masterDataAkhir.delete_all
@@ -155,7 +156,7 @@ class GenerateRankingController < ApplicationController
         sorted_results.each_with_index do |(id_employee, total_nilai), index|
           ranking = index + 1
           rounded_nilai = total_nilai.round(2)
-          hasil_akhir = HasilAkhir.new(id_employee: id_employee, nilai_akhir: rounded_nilai)
+          hasil_akhir = HasilAkhir.new(ranking: ranking, id_employee: id_employee, nilai_akhir: rounded_nilai)
           hasil_akhir.save
           HitungNormalisasiBobot.update_all(status: "completed")
           Normalisasi.update_all(status: "completed")
@@ -179,6 +180,29 @@ class GenerateRankingController < ApplicationController
 
     def hasilAkhir
       @data = HasilAkhir.all
+    end
+
+    def get_json
+      ranking1_log_hasil = LogHasil.where(ranking: 1).group(:id_employee).count
+      ranking1_hasil_akhir = HasilAkhir.where(ranking: 1).group(:id_employee).count
+      combined_ranking1 = ranking1_log_hasil.merge(ranking1_hasil_akhir) { |_key, val1, val2| val1 + val2 }
+      render json: combined_ranking1.map { |id_employee, count| { id_employee: employeeName(id_employee), count: count } }
+    end
+
+    def log_data_source
+      @datasrc = LogDataSource.all
+    end
+
+    def log_normalisasi
+      @data = LogNormalisasi.all
+    end
+
+    def log_normalisasi_bobot
+      @data = LogNormalisasiBobot.all
+    end
+
+    def log_hasil_akhir
+      @data = LogHasil.all
     end
 
     private

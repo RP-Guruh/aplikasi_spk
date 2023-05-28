@@ -37,5 +37,11 @@ Rails.application.routes.draw do
   get '/ranking/data/normalisasi', to: 'generate_ranking#normalisasiData'
   get '/ranking/data/bobot', to: 'generate_ranking#normalisasiBobot'
   get '/ranking/data/akhir', to: 'generate_ranking#hasilAkhir'
+  get '/ranking/get_json', to: 'generate_ranking#get_json'
+  
+  get '/log/data_source', to: 'generate_ranking#log_data_source'
+  get '/log/normalisasi', to: 'generate_ranking#log_normalisasi'
+  get '/log/normalisasi_bobot', to: 'generate_ranking#log_normalisasi_bobot'
+  get '/log/hasil_akhir', to: 'generate_ranking#log_hasil_akhir'
   
 end

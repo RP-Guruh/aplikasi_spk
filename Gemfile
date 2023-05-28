@@ -81,3 +81,4 @@ gem "byebug", "~> 11.1", :groups => [:development, :test]
 gem 'erb-formatter', '~> 0.4.3', :groups => [:development, :test]
 gem 'ransack'
 gem 'indonesia_timezone', '~> 0.0.0'
+gem 'chart-js-rails'
