@@ -1,24 +1,12 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. Install ruby dan install rails
+2. Install postgreSQL, untuk kemudahan gunakan PGAdmin
+3. masuk ke postgre dan buat sebuah database dengan nama app_spk
+4. lakukan clone terhadap repositori ini
+5. masuk ke folder lalu jalankan :
+   > bundle install
+   > rails db:migrate
+   > rails db:seed
+   > rails s
+ 7. buka browser dan jalankan 127.0.0.1:300
