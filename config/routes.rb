@@ -44,4 +44,13 @@ Rails.application.routes.draw do
   get '/log/normalisasi_bobot', to: 'generate_ranking#log_normalisasi_bobot'
   get '/log/hasil_akhir', to: 'generate_ranking#log_hasil_akhir'
   
+  # create report
+  get 'generate_report/employee_report', to: 'generate_report#employee_report', as: 'generate_report_employee_report'
+
+  get 'generate_report/hasil_report', to: 'generate_report#hasil_report'
+  get 'generate_report/normalisasi_bobot', to: 'generate_report#normalisasi_bobot'
+  get 'generate_report/normalisasi_report', to: 'generate_report#normalisasi_report'
+  
+
+
 end

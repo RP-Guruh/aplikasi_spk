@@ -59,7 +59,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
-  gem 'faker', '~> 3.2'
+
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
@@ -72,13 +72,17 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
-  gem 'faker', '~> 3.2'
+ 
 end
 
 # use byebug
 gem "byebug", "~> 11.1", :groups => [:development, :test]
-
+gem 'faker', '~> 3.2'
 gem 'erb-formatter', '~> 0.4.3', :groups => [:development, :test]
 gem 'ransack'
 gem 'indonesia_timezone', '~> 0.0.0'
 gem 'chart-js-rails'
+gem 'wicked_pdf', '~> 2.6', '>= 2.6.3'
+gem 'grover', '~> 1.1', '>= 1.1.5'
+gem 'prawn', '~> 2.4'
+gem 'wkhtmltopdf-binary', '~> 0.12.6.6'

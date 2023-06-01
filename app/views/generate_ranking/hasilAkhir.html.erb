@@ -36,6 +36,8 @@
       <div class="card">
         <h5 class="card-header">Ranking Karyawan Terbaik</h5>
         <a href="/log/hasil_akhir"><small style="margin-left:20px;"> Data Log </small></a>
+        <%= link_to 'Save as PDF', '/generate_report/hasil_report', class: 'card-header',id: 'generate-pdf-link' %>
+    
         <div class="table-responsive text-nowrap">
           <table class="table table-hover">
             <thead>
