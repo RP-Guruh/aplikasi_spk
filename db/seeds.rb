@@ -29,8 +29,6 @@ puts "db seed running"
   )
 end
 
-seeds for criteria_values table
-
 dataKriteria = [
   {
     kriteria: "C1",
