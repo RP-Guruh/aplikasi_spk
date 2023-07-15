@@ -84,8 +84,14 @@
         <div data-i18n="Basic">Hasil Akhir</div>
       <% end %>
     </li>
-    
-    
+
+    <li class="menu-item">
+      <%= button_to  destroy_user_session_path, method: :delete, class: "menu-link" do %>
+        <i class="menu-icon tf-icons bx bx-collection"></i>
+        <div data-i18n="Basic">Logout</div>
+      <% end %>
+    </li>
+
 
   </ul>
 </aside>
