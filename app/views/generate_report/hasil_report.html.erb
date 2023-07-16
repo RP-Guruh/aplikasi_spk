@@ -39,6 +39,24 @@
       bottom: 20px;
       right: 20px;
     }
+    @media print {
+        body {
+            counter-reset: page;
+        }
+
+        .page-marker::after {
+            counter-increment: page;
+            content: counter(page);
+            display: none;
+        }
+
+        .page-marker:last-child::after {
+            display: block;
+            position: absolute;
+            bottom: 0;
+            right: -9px;
+        }
+    }
     </style>
 
     <link
@@ -57,8 +75,9 @@
     >
   </head>
   <body>
-
-    <h3 style="text-align:center;">Data Ranking Karyawan Terbaik</h3>
+  <img src="https://dc718.4shared.com/img/FQmyhq_6jq/s23/1895d90f3c0/kop" alt="Logo" style="width: 100%; margin-top: -5px;">
+  <br>
+    <h3 style="text-align:center; margin-top: 30px;">Data Ranking Karyawan Terbaik</h3>
     <table style="margin-top:50px;">
      <thead>
               <tr>
@@ -82,9 +101,14 @@
             </tbody>
     </table>
 
- 
+  <div class="page-marker">
+    <div style="margin-left: 500px;">
+      <img src="https://dc718.4shared.com/img/PTFq4unhjq/s23/1895d90e808/Ttd-removebg-preview__1_" alt="Logo" style="width: 120%;">
+    </div>
+  </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
